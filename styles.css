@@ -272,7 +272,13 @@ h1>span {
 }
 
 .hero-image {
-    height: 230px
+    height: 320px;
+    background: var(--ink)
+}
+
+.hero-image img {
+    object-fit: contain;
+    object-position: center
 }
 
 .slot-corner {
@@ -889,7 +895,7 @@ footer button {
     }
 
     .hero-image {
-        height: 220px
+        height: 280px
     }
 
     .poster-title strong {
