@@ -1,12 +1,12 @@
 'use strict';
 
 const phases = [
-  {title:'Estação Krasny Mir',type:'PONTO DE PARTIDA',description:'A missão começa na estação de lançamento. É aqui que a ordem de Petrovitch se transforma na jornada de Valentina.',enemies:'Deixar a Terra',movement:'Sem movimentação livre'},
-  {title:'Estratosfera',type:'DEIXANDO A TERRA',description:'Os primeiros obstáculos surgem na subida. Valentina precisa atravessar gaivotas e asteroides enquanto deixa o céu terrestre para trás.',enemies:'Gaivotas e asteroides',movement:'Horizontal e vertical'},
-  {title:'Espaço próximo',type:'ENTRE DESTROÇOS E MÁQUINAS',description:'Um satélite quebrado, o Buran e drones cruzam a rota. Ler os padrões de cada ameaça é parte da sobrevivência.',enemies:'Satélite quebrado, Buran e drones',movement:'Horizontal e vertical'},
-  {title:'Espaço profundo',type:'EM TERRITÓRIO DESCONHECIDO',description:'Longe da Terra, a viagem fica ainda mais hostil. Novos drones, minas espaciais e até um alienígena desafiam a cosmonauta.',enemies:'Drones, minas espaciais e alienígena',movement:'Horizontal e vertical'},
-  {title:'Órbita de Marte',type:'CONFRONTO FINAL / BOSS FIGHT',description:'Marte está logo ali. Uma nave-mãe acompanhada por drones forma a última linha de ataque antes da chegada ao planeta vermelho.',enemies:'Nave-mãe e drones',movement:'Horizontal e vertical'},
-  {title:'Chegada a Marte',type:'O IMPOSSÍVEL ACONTECEU',description:'Valentina chega ao planeta vermelho. Enviada para morrer, ela transforma a missão sem esperança em uma conquista que seus comandantes não podem apagar.',enemies:'Missão concluída',movement:'Sem movimentação livre'}
+  {title:'Estação Krasny Mir',type:'PONTO DE PARTIDA',description:'A missão começa na estação de lançamento. É aqui que a ordem de Petrovitch se transforma na jornada de Valentina.',enemies:'Deixar a Terra',movement:'Sem movimentação livre',image:'assets/krasny_mir.png',alt:'Foguete na Estação Krasny Mir'},
+  {title:'Estratosfera',type:'DEIXANDO A TERRA',description:'Os primeiros obstáculos surgem na subida. Valentina precisa atravessar gaivotas e asteroides enquanto deixa o céu terrestre para trás.',enemies:'Gaivotas e asteroides',movement:'Horizontal e vertical',image:'assets/estratosfera.png',alt:'Nave da Valentina enfrentando gaivotas na estratosfera'},
+  {title:'Espaço próximo',type:'ENTRE DESTROÇOS E MÁQUINAS',description:'Um satélite quebrado, o Buran e drones cruzam a rota. Ler os padrões de cada ameaça é parte da sobrevivência.',enemies:'Satélite quebrado, Buran e drones',movement:'Horizontal e vertical',image:'assets/espaco_proximo.png',alt:'Nave da Valentina entre destroços no espaço próximo'},
+  {title:'Espaço profundo',type:'EM TERRITÓRIO DESCONHECIDO',description:'Longe da Terra, a viagem fica ainda mais hostil. Novos drones, minas espaciais e até um alienígena desafiam a cosmonauta.',enemies:'Drones, minas espaciais e alienígena',movement:'Horizontal e vertical',image:'assets/espaco_profundo.png',alt:'Nave da Valentina em meio a perigos no espaço profundo'},
+  {title:'Órbita de Marte',type:'CONFRONTO FINAL / BOSS FIGHT',description:'Marte está logo ali. Uma nave-mãe acompanhada por drones forma a última linha de ataque antes da chegada ao planeta vermelho.',enemies:'Nave-mãe e drones',movement:'Horizontal e vertical',image:'assets/orbit_mars.png',alt:'Nave da Valentina enfrentando drones na órbita de Marte'},
+  {title:'Chegada a Marte',type:'O IMPOSSÍVEL ACONTECEU',description:'Valentina chega ao planeta vermelho. Enviada para morrer, ela transforma a missão sem esperança em uma conquista que seus comandantes não podem apagar.',enemies:'Missão concluída',movement:'Sem movimentação livre',image:'assets/jogatina.png',alt:'Tela de abertura de Proyekt Kosmonavta com Marte ao fundo'}
 ];
 let activePhase = 0;
 const phaseButtons = [...document.querySelectorAll('[data-phase]')];
@@ -19,7 +19,9 @@ function selectPhase(index) {
   document.querySelector('#phase-enemies').textContent = `DESAFIO / ${phase.enemies}`;
   document.querySelector('#phase-movement').textContent = `MOVIMENTO / ${phase.movement}`;
   document.querySelector('#phase-count').textContent = `${String(index + 1).padStart(2,'0')} / 06`;
-  document.querySelector('#phase-image-label').textContent = `03 / CENÁRIO ${String(index + 1).padStart(2,'0')}`;
+  const phaseImage = document.querySelector('#phase-image');
+  phaseImage.src = phase.image;
+  phaseImage.alt = phase.alt;
   const next = document.querySelector('#next-phase');
   next.textContent = index === 5 ? 'VOLTAR AO INÍCIO →' : 'PRÓXIMA ETAPA →';
   next.setAttribute('aria-label', index === 5 ? 'Voltar à primeira etapa' : 'Explorar próxima etapa');
